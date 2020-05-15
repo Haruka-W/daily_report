@@ -10,6 +10,48 @@
   </head>
 
   <body>
+    <!-- ヘッダーここから -->
+    <heder>
+      <nav class="nanbar">
+        <div class="container">
+          <div class="navbar-start">
+            <%= link_to '渡辺電気', root_path %>
+          </div>
+          <!-- ログイン時 -->
+          <% if user_signed_in? %>
+            <div class="navbar-center">
+              <span><%= current_user.name %>さん　お疲れ様です。</span>
+            </div>
+            <div class="navbar-end">
+              <%= link_to 'マイページ', user_path(current_user.id) %>
+              <%= link_to '日報作成', "#" %>
+              <%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
+            </div>
+          <!-- ログアウト時 -->
+          <% else %>
+            <div class="navbar-end">
+              <%= link_to 'ログイン', new_user_session_path %>
+            </div>
+          <% end %>
+        </div>
+      </nav>
+    </heder>
+    <!-- ヘッダーここまで -->
+
+    <!-- メインここから -->
     <%= yield %>
+    <!-- メインここまで -->
+
+    <!-- フッターここから -->
+    <footer>
+      <!-- コピーライト -->
+      <p>© 2020 Haruka Watanabe</p>
+      <!-- GitHubリンク -->
+      <div class="has-icons-left has-text-centered">
+        <%= link_to 'GitHub', 'https://github.com/Haruka-W/daily_report', class: 'fab fa-github' %>
+      </div>
+    </footer>
+    <!-- フッターここまで -->
   </body>
+
 </html>
