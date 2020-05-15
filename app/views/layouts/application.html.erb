@@ -1,57 +1,65 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>DailyReport</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+<head>
+  <title>DailyReport</title>
+  <!-- フォントオーサム導入 -->
+  <script src="https://kit.fontawesome.com/3f94a5995c.js" crossorigin="anonymous"></script>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
 
-  <body>
-    <!-- ヘッダーここから -->
-    <heder>
-      <nav class="nanbar">
-        <div class="container">
-          <div class="navbar-start">
-            <%= link_to '渡辺電気', root_path %>
-          </div>
-          <!-- ログイン時 -->
-          <% if user_signed_in? %>
-            <div class="navbar-center">
-              <span><%= current_user.name %>さん　お疲れ様です。</span>
-            </div>
-            <div class="navbar-end">
-              <%= link_to 'マイページ', user_path(current_user.id) %>
-              <%= link_to '日報作成', "#" %>
-              <%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
-            </div>
-          <!-- ログアウト時 -->
-          <% else %>
-            <div class="navbar-end">
-              <%= link_to 'ログイン', new_user_session_path %>
-            </div>
-          <% end %>
-        </div>
-      </nav>
-    </heder>
-    <!-- ヘッダーここまで -->
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
 
-    <!-- メインここから -->
-    <%= yield %>
-    <!-- メインここまで -->
+<body>
+  <nav class="navbar navbar-expand fixed-top">
+    <%= link_to "渡辺電気", root_path, id: "logo", class: "navbar-brand" %>
+    <!-- ログイン時 -->
+    <% if user_signed_in? %>
+    <div class="navbar-text">
+      <span><%= current_user.name %>さん　お疲れ様です。</span>
+    </div>
+    <ul class="navbar-nav navbar-right">
+      <li class="nav-item">
+        <%= link_to "マイページ", user_path(current_user.id), class: "nav-link" %>
+      </li>
+      <li class="nav-item">
+        <%= link_to "日報作成", "#", class: "nav-link" %>
+      </li>
+      <li class="nav-item">
+        <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "nav-link" %>
+      </li>
+    </ul>
+    <!-- ログアウト時 -->
+    <% else %>
+    <ul class="navbar-nav navbar-right">
+      <li class="nav-item">
+        <%= link_to "新規登録", new_user_registration_path, class: "nav-link" %>
+      </li>
+      <li class="nav-item">
+        <%= link_to "ログイン", new_user_session_path, class: "nav-link" %>
+      </li>
+    </ul>
+    <% end %>
+  </nav>
 
-    <!-- フッターここから -->
-    <footer>
-      <!-- コピーライト -->
+  <!-- メインここから -->
+  <%= yield %>
+  <!-- メインここまで -->
+
+  <!-- フッターここから -->
+  <footer>
+    <!-- コピーライト -->
+    <div class="text-center">
       <p>© 2020 Haruka Watanabe</p>
-      <!-- GitHubリンク -->
-      <div class="has-icons-left has-text-centered">
-        <%= link_to 'GitHub', 'https://github.com/Haruka-W/daily_report', class: 'fab fa-github' %>
-      </div>
-    </footer>
-    <!-- フッターここまで -->
-  </body>
+    </div>
+    <!-- GitHubリンク -->
+    <div class="has-icons-left text-center">
+      <%= link_to 'GitHub', 'https://github.com/Haruka-W/daily_report', class: 'fab fa-github' %>
+    </div>
+  </footer>
+  <!-- フッターここまで -->
+</body>
 
 </html>

@@ -13,3 +13,32 @@
  *= require_tree .
  *= require_self
  */
+
+ @import "bootstrap-sprockets";
+ @import "bootstrap";
+
+
+li {
+	list-style-type: none;
+	line-height: 30px;
+}
+
+/*ナビゲーションバー*/
+.navbar {
+	background-color: lightblue;
+	color: white;
+}
+
+.navbar-right {
+	margin: 10px 15px ;
+}
+
+.nav-item {
+	padding: 5px;
+}
+
+/*フッター*/
+footer {
+	background-color: lightblue;
+	color: white;
+}
