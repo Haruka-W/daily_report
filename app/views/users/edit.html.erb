@@ -1,2 +1,27 @@
-<h1>Users#edit</h1>
-<p>Find me in app/views/users/edit.html.erb</p>
+<h1>社員情報変更ページ</h1>
+
+<%= form_for(@user) do |f| %>
+
+<div class="field">
+	<%= f.label "氏名" %>
+	<%= f.text_field :name, class: "" %>
+</div>
+
+<div class="field">
+	<%= f.label "メールアドレス" %>
+	<%= f.email_field :email, class: "email" %>
+</div>
+
+<div class="field">
+	<%= f.label "在籍状況" %>
+	<%= f.radio_button :is_active, :在籍中 %>
+	<%= f.label :is_active, "在籍中", {value: :有効, style: "display: inline-block;"} %>
+	<%= f.radio_button :is_active, :退職済み %>
+	<%= f.label :is_active, "退職済み", {value: :退会済, style: "display: inline-block;"} %>
+</div>
+
+<div class="actions">
+	<%= f.submit "変更内容を保存する", class: "btn btn-primary"%>
+</div>
+
+<% end %>
