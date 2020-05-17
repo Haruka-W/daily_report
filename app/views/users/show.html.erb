@@ -1,0 +1,35 @@
+<div class="container">
+
+	<h1><%= @user.name %>さんのページ</h1>
+
+	<div class="row">
+		<!-- 社員情報の列 -->
+		<div class="user_info col-sm-4">
+			<h3>社員情報</h3>
+			<table class="table">
+				<tr>
+					<th>社員ID</th>
+					<td><%= @user.id %></td>
+				</tr>
+				<tr>
+					<th>氏名</th>
+					<td><%= @user.name %></td>
+				</tr>
+				<tr>
+					<th>登録メールアドレス</th>
+					<td><%= @user.email %></td>
+				</tr>
+				<tr>
+					<th>在籍状況</th>
+					<td><%= @user.is_active %></td>
+				</tr>
+			</table>
+			<p><%= link_to "社員情報変更", edit_user_path(@user), class: "btn btn-success" %></p>
+		</div>
+		<!-- ログインユーザーが作成した日報一覧の列 -->
+		<div class="col-sm-8">
+			<h3>日報一覧</h3>
+		</div>
+	</div>
+
+</div>

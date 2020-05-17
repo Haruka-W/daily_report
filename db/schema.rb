@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(version: 2020_05_15_083942) do
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
     t.string "name", default: "", null: false
-    t.string "user_type", default: "staff", null: false
+    t.boolean "admin", default: false, null: false
     t.integer "is_active", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
