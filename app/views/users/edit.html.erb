@@ -12,6 +12,9 @@
 	<%= f.email_field :email, class: "email" %>
 </div>
 
+<!-- 以下は管理者でログインの時のみ表示 -->
+<% if current_user.admin? %>
+<hr>
 <div class="field">
 	<%= f.label "在籍状況" %>
 	<%= f.radio_button :is_active, :在籍中 %>
@@ -19,6 +22,15 @@
 	<%= f.radio_button :is_active, :退職済み %>
 	<%= f.label :is_active, "退職済み", {value: :退会済, style: "display: inline-block;"} %>
 </div>
+
+<div class="field">
+	<%= f.label "管理者権限" %>
+	<%= f.radio_button :admin, true %>
+	<%= f.label :admin, "管理者", {value: true, style: "display: inline-block;"} %>
+	<%= f.radio_button :admin, false %>
+	<%= f.label :admin, "一般社員", {value: false, style: "display: inline-block;"} %>
+</div>
+<% end %>
 
 <div class="actions">
 	<%= f.submit "変更内容を保存する", class: "btn btn-primary"%>

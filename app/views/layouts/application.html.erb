@@ -15,8 +15,30 @@
 <body>
   <nav class="navbar navbar-expand fixed-top">
     <%= link_to "渡辺電気", root_path, id: "logo", class: "navbar-brand" %>
-    <!-- ログイン時 -->
-    <% if user_signed_in? %>
+    <!-- 管理者でログイン時 -->
+    <% if user_signed_in? && current_user.admin? %>
+    <div class="navbar-text">
+      <span>現在、管理者モードで<%= current_user.name %>さんがログイン中です。</span>
+    </div>
+    <ul class="navbar-nav navbar-right">
+      <li class="nav-item">
+        <%= link_to "社員", admin_users_path, class: "nav-link" %>
+      </li>
+      <li class="nav-item">
+        <%= link_to "日報", "#", class: "nav-link" %>
+      </li>
+      <li class="nav-item">
+        <%= link_to "現場", "#", class: "nav-link" %>
+      </li>
+      <li class="nav-item">
+        <%= link_to "業務", "#", class: "nav-link" %>
+      </li>
+      <li class="nav-item">
+        <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "nav-link" %>
+      </li>
+    </ul>
+    <!-- 一般社員でログイン時 -->
+    <% elsif user_signed_in? %>
     <div class="navbar-text">
       <span><%= current_user.name %>さん、本日も業務お疲れ様です。</span>
     </div>
