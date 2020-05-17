@@ -14,6 +14,13 @@ class Admin::PlacesController < ApplicationController
   end
 
   def edit
+  	@place = Place.find(params[:id])
+  end
+
+  def update
+  	@place = Place.find(params[:id])
+  	@place.update(place_params)
+  	redirect_to admin_places_path
   end
 
   private

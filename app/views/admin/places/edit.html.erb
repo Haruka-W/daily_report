@@ -1,2 +1,7 @@
-<h1>Admin::Places#edit</h1>
-<p>Find me in app/views/admin/places/edit.html.erb</p>
+<h1>現場名変更ページ</h1>
+
+<%= form_with(model: @place, url: admin_place_path(@place.id)) do |f| %>
+	<%= f.label "現場名" %>
+	<%= f.text_field :name %>
+	<%= f.submit "変更を保存する", class: "btn btn-primary" %>
+<% end %>
