@@ -4,7 +4,10 @@ Rails.application.routes.draw do
 
   # 社員コントローラ
   devise_for :users
-  resources :users, only: %i[index show edit update]
+  resources :users, only: [:show, :edit, :update]
+  namespace :admin do
+    resources :users, only: [:index]
+  end
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
