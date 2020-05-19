@@ -1,2 +1,34 @@
-<h1>Admin::Projects#index</h1>
-<p>Find me in app/views/admin/projects/index.html.erb</p>
+<h1>【業務】一覧・登録ページ</h1>
+
+<h3>新規登録</h3>
+<div class="new_place_field">
+	<%= form_with model: @project, url: admin_projects_path, local: true do |f| %>
+	<%= f.label "業務名" %>
+	<%= f.text_field :name %>
+	<%= f.label "現場" %>
+	<%= f.collection_select :place_id, Place.all, :id, :name, {:include_blank => '---選択してください---'} %>
+	<%= f.submit "追加する", class: "btn btn-primary" %>
+	<% end %>
+</div>
+
+<h3>登録済み業務一覧</h3>
+<table class="table table-hover table-inverse">
+	<thead>
+		<tr>
+			<th>現場</th>
+			<th>業務名</th>
+			<th>作業数</th>
+			<th colspan = "1"></th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @projects.each do |project| %>
+		<tr>
+			<td><%= project.place.name %></td>
+			<td><%= project.name %></td>
+			<td>タスクのカウント</td>
+			<td><%= link_to "編集する", edit_admin_project_path(project.id), class: "btn btn-success" %></td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>

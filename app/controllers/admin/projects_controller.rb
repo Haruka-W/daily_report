@@ -3,9 +3,14 @@ class Admin::ProjectsController < ApplicationController
   before_action :if_not_admin
 
   def index
+  	@project = Project.new
+  	@projects = Project.all
   end
 
   def create
+  	@project = Project.new(project_params)
+  	@project.save
+  	redirect_to admin_projects_path
   end
 
   def edit
