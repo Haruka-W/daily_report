@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_19_080733) do
+ActiveRecord::Schema.define(version: 2020_05_19_094539) do
 
   create_table "places", force: :cascade do |t|
     t.string "name", default: "", null: false
@@ -22,6 +22,14 @@ ActiveRecord::Schema.define(version: 2020_05_19_080733) do
     t.integer "place_id", null: false
     t.string "name", default: "", null: false
     t.integer "status", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "tasks", force: :cascade do |t|
+    t.integer "project_id", null: false
+    t.string "content", default: "", null: false
+    t.integer "progress_status", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

@@ -15,6 +15,8 @@ class Admin::ProjectsController < ApplicationController
 
   def edit
   	@project = Project.find(params[:id])
+  	@task = Task.new
+  	@tasks = Task.all
   end
 
   def update
@@ -30,5 +32,9 @@ class Admin::ProjectsController < ApplicationController
 
 	def project_params
 		params.require(:project).permit(:place_id, :name, :status)
+	end
+
+	def task_params
+		params.require(:task).permit(:report_id, :project_id, :content, :progress_status)
 	end
 end

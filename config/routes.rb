@@ -16,7 +16,9 @@ Rails.application.routes.draw do
 
   # 業務コントローラ
   namespace :admin do
-    resources :projects, only: [:index, :create, :edit, :update]
+    resources :projects, only: [:index, :create, :edit, :update] do
+    	resource :tasks, only: [:create, :edit, :update]
+    end
   end
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
