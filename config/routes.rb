@@ -1,9 +1,5 @@
 Rails.application.routes.draw do
 
-  namespace :admin do
-    get 'places/index'
-    get 'places/edit'
-  end
   root 'homes#top'
 
   # 社員コントローラ
@@ -16,6 +12,11 @@ Rails.application.routes.draw do
   # 現場コントローラ
   namespace :admin do
     resources :places, only: [:index, :create, :edit, :update]
+  end
+
+  # 業務コントローラ
+  namespace :admin do
+    resources :projects, only: [:index, :create, :edit, :update]
   end
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
