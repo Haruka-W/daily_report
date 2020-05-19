@@ -1,2 +1,48 @@
-<h1>Admin::Projects#edit</h1>
-<p>Find me in app/views/admin/projects/edit.html.erb</p>
+<h1>【業務】編集ページ</h1>
+
+<%= form_with(model: @project, url: admin_project_path(@project.id)) do |f| %>
+<div class="field">
+	<%= f.label "業務名" %>
+	<%= f.text_field :name %>
+</div>
+<div class="field">
+	<%= f.label "現場" %>
+	<%= f.collection_select :place_id, Place.all, :id, :name, {:include_blank => '---選択してください---'} %>
+</div>
+<div class="field">
+	<%= f.label "進捗状況" %>
+	<%= f.select :status, Project.statuses.keys, {:include_blank => '---選択してください---'} %>
+</div>
+<%= f.submit "変更を保存する", class: "btn btn-primary" %>
+<% end %>
+
+<hr>
+
+<h3>作業内容</h3>
+<br>
+<h4>作業登録</h4>
+<div class="new_task_field">
+	<%#= form_with model: @task, url: admin_tasks_path, local: true do |f| %>
+	<%#= f.label "作業名" %>
+	<%#= f.text_field :content %>
+	<%#= f.submit "追加する", class: "btn btn-primary" %>
+	<%# end %>
+</div>
+<table class="table table-hover table-inverse">
+	<thead>
+		<tr>
+			<th>作業名</th>
+			<th>作業進捗</th>
+			<th colspan = "1"></th>
+		</tr>
+	</thead>
+	<tbody>
+		<%# @tasks.each do |task| %>
+		<tr>
+			<td>「作業内容」</td>
+			<td>「ステータス」</td>
+			<td><%= link_to "編集する", "#", class: "btn btn-success" %></td>
+		</tr>
+		<%# end %>
+	</tbody>
+</table>
