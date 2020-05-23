@@ -1,0 +1,49 @@
+<h1>【案件】編集ページ</h1>
+
+<%= form_with(model: @project, url: admin_project_path(@project.id)) do |f| %>
+<div class="field">
+	<%= f.label "業務名" %>
+	<%= f.text_field :name %>
+</div>
+<div class="field">
+	<%= f.label "現場" %>
+	<%= f.collection_select :place_id, Place.all, :id, :name, {:include_blank => '---選択してください---'} %>
+</div>
+<div class="field">
+	<%= f.label "進捗状況" %>
+	<%= f.select :status, Project.statuses.keys, {:include_blank => '---選択してください---'} %>
+</div>
+<%= f.submit "変更を保存する", class: "btn btn-primary" %>
+<% end %>
+
+<hr>
+
+<h4>作業登録</h4>
+<div class="new_task_field">
+	<%= form_with(model: [@project, @task], url: admin_project_tasks_path(@project.id), local: true) do |f| %>
+	<%= f.label "作業名" %>
+	<%= f.text_field :content %>
+	<%= f.submit "追加する", class: "btn btn-primary" %>
+	<% end %>
+</div>
+<br>
+<h4>作業一覧</h4>
+<table class="table table-hover table-inverse">
+	<thead>
+		<tr>
+			<th>作業名</th>
+			<th>作業進捗</th>
+			<th colspan = "1"></th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @project.tasks.each do |task| %>
+		<tr>
+			<td><%= task.content %></td>
+			<td><%= task.progress_status %></td>
+			<td><%= link_to "編集する", edit_admin_project_task_path(task.project_id, task.id), class: "btn btn-success" %></td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>
+

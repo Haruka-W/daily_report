@@ -1,0 +1,14 @@
+<h1>【<%= @task.project.name %>】の作業内容編集ページ</h1>
+
+<%= form_with(model: @task, url: admin_project_task_path(@task.id)) do |f| %>
+<div class="field">
+	<%= f.label "作業名" %>
+	<%= f.text_field :content %>
+</div>
+
+<div class="field">
+	<%= f.label "作業進捗" %>
+	<%= f.select :progress_status, Task.progress_statuses.keys, {:include_blank => '---選択してください---'} %>
+</div>
+<%= f.submit "変更を保存する", class: "btn btn-primary" %>
+<% end %>
