@@ -14,7 +14,7 @@
 	<thead>
 		<tr>
 			<th>現場名</th>
-			<th>プロジェクト数</th>
+			<th>案件数</th>
 			<th colspan = "1"></th>
 		</tr>
 	</thead>
@@ -22,7 +22,7 @@
 		<% @places.each do |place| %>
 		<tr>
 			<td><%= place.name %></td>
-			<td>プロジェクトのカウント</td>
+			<td><%= place.projects.count %>件</td>
 			<td><%= link_to "編集する", edit_admin_place_path(place.id), class: "btn btn-success" %></td>
 		</tr>
 		<% end %>
