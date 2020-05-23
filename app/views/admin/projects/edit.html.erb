@@ -41,7 +41,7 @@
 		<tr>
 			<td><%= task.content %></td>
 			<td><%= task.progress_status %></td>
-			<td><%= link_to "編集する", "#", class: "btn btn-success" %></td>
+			<td><%= link_to "編集する", edit_admin_project_task_path(task.project_id, task.id), class: "btn btn-success" %></td>
 		</tr>
 		<% end %>
 	</tbody>

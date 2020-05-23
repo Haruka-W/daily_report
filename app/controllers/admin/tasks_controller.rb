@@ -9,6 +9,13 @@ class Admin::TasksController < ApplicationController
   end
 
   def edit
+  	@task = Task.find(params[:id])
+  end
+
+  def update
+  	@task = Task.find(params[:id])
+  	@task.update(task_params)
+  	redirect_to edit_admin_project_path(@task.project_id)
   end
 
   private

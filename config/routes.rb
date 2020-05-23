@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   # 業務コントローラ
   namespace :admin do
     resources :projects, only: [:index, :create, :edit, :update] do
-    	resource :tasks, only: [:create, :edit, :update]
+    	resources :tasks, only: [:create, :edit, :update]
     end
   end
 
