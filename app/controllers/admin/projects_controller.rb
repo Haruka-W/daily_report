@@ -16,7 +16,6 @@ class Admin::ProjectsController < ApplicationController
   def edit
   	@project = Project.find(params[:id])
   	@task = Task.new
-  	@tasks = Task.all
   end
 
   def update
