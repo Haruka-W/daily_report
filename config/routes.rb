@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
 
-  root 'homes#top'
-
   # 社員コントローラ
   devise_for :users
   resources :users, only: [:show, :edit, :update]
@@ -20,6 +18,9 @@ Rails.application.routes.draw do
     	resources :tasks, only: [:create, :edit, :update]
     end
   end
+
+  # 日報コントローラ
+  resources :reports, only: [:new, :create, :show, :edit, :update]
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
