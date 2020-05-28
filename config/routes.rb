@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  root 'homes#top'
+
   # 社員コントローラ
   devise_for :users
   resources :users, only: [:show, :edit, :update]

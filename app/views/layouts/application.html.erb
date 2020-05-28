@@ -47,7 +47,7 @@
         <%= link_to "マイページ", user_path(current_user.id), class: "nav-link" %>
       </li>
       <li class="nav-item">
-        <%= link_to "日報作成", "#", class: "nav-link" %>
+        <%= link_to "日報作成", new_report_path, class: "nav-link" %>
       </li>
       <li class="nav-item">
         <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "nav-link" %>
