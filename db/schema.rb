@@ -28,6 +28,8 @@ ActiveRecord::Schema.define(version: 2020_05_23_053659) do
 
   create_table "reports", force: :cascade do |t|
     t.integer "user_id", null: false
+    t.integer "place_id", null: false
+    t.integer "project_id", null: false
     t.date "work_date", null: false
     t.time "work_time", null: false
     t.datetime "created_at", null: false

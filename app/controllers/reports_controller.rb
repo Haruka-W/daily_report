@@ -1,5 +1,12 @@
 class ReportsController < ApplicationController
   def new
+  	@report = Report.new
+  	@projects = Project.none
+  end
+
+  def ajax
+  	@report = Report.new
+  	@projects = Project.where(place_id: params[:place_id])
   end
 
   def create

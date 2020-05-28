@@ -1,2 +1,56 @@
-<h1>Reports#new</h1>
-<p>Find me in app/views/reports/new.html.erb</p>
+<h1>【日報】新規作成ページ</h1>
+
+<script type="text/javascript">
+　$(window).load(function(){
+    var place_select = $('[data-role="place_select"]');
+    var url = "#{ajax_path}";
+    place_select.change(function(){
+      $.get(url, {place_id: place_select.has('option:selected').val()});
+    });
+  });
+</script>
+
+<div class="box">
+  <%= form_for(@report, url: reports_path) do |f| %>
+
+  <div class="field">
+    <p class="control">
+      <%= f.label "作業日" %>
+      <%= f.date_select :work_date %>
+    </p>
+  </div>
+
+  <div class="field">
+    <p class="control">
+      <%= f.label "作業時間" %>
+      <%= f.time_select :work_time %>
+    </p>
+  </div>
+
+  <div class="field">
+   <%= f.label "現場" %>
+   <p class="control">
+     <%= f.collection_select :place_id, Place.all, :id, :name, {selected: @place_id.presence || 0, prompt: true},{'data-role'=>'place_select'} %>
+   </p>
+ </div>
+
+<div class="field">
+   <%= f.label "案件" %>
+   <p class="control">
+     <%= f.select :project_id, @projects, {'data-role'=>'project_select'}, {:include_blank => '---選択してください---'} %>
+   </p>
+ </div>
+
+ <div class="field">
+ 	<%#= task.content %>
+	<%#= f.label "作業進捗" %>
+	<%#= f.select :progress_status, Task.progress_statuses.keys, {:include_blank => '---選択してください---'} %>
+</div>
+
+ <div class="actions">
+  <%= f.submit "作成" , class: "button is-success" %>
+</div>
+
+<% end %>
+</div>
+

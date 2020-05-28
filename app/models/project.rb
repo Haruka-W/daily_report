@@ -1,6 +1,7 @@
 class Project < ApplicationRecord
 	belongs_to :place
 	has_many :tasks
+	has_many :reports
 
 	# 進捗ステータス
 	enum status: {
